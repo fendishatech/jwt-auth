@@ -1,0 +1,29 @@
+{
+  "name": "jwt_auth",
+  "version": "1.0.0",
+  "description": "implementation of jwt auth on a fullstack react-express-mysql app.",
+  "main": "./src/server.js",
+  "scripts": {
+    "dev": "nodemon ./src/server.js"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "node",
+    "jwt",
+    "token"
+  ],
+  "author": "kidus taye",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.1.2",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.28.0"
+  }
+}
