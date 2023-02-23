@@ -1,0 +1,14 @@
+###
+GET http://localhost:3333/api/users HTTP/1.1
+
+
+###
+POST http://localhost:3333/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username" : "kidys@noah",
+    "email":"kidus@gmail.com",
+    "password" : "123456",
+    "confirmPassword" : "123456"
+}
