@@ -1,12 +1,14 @@
 const express = require("express");
 const db = require("./helper/database");
-
+const dotenv = require("dotenv");
 const userRouter = require("./services/user/routes");
+
 // APP
 const app = express();
 
 // MIDDLE WARES
 app.use(express.json());
+dotenv.config();
 
 // ROUTES
 app.use("/api/", userRouter);
