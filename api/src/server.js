@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const db = require("./helper/database");
 const userRouter = require("./services/user/routes");
 // DEBUG
-const { migrateSchema } = require("./helper/migrate");
+// const { migrateSchema } = require("./helper/migrate");
 
 // APP
 const app = express();

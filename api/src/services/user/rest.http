@@ -1,13 +1,12 @@
 ###
 GET http://localhost:3333/api/users HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoia2lkdXNAbm9haCIsImVtYWlsIjoia2lkdXNAZ21haWwuY29tIiwiaWF0IjoxNjc3Mjk1MjAyLCJleHAiOjE2NzcyOTUyNjJ9.Kmphquf7J967cW5kir2bg8gAkCFXVpkYTOnBxOxQ-R0
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoia2lkdXNAbm9haCIsImVtYWlsIjoia2lkdXNAZ21haWwuY29tIiwiaWF0IjoxNjc3MzM1Mjg1LCJleHAiOjE2NzczMzUzNDV9.Y9rCgJxyy35qIg89_lxqWGquaVzx88cHhHR8RrI921A
 ###
 POST http://localhost:3333/api/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "username" : "kidus@noah",
+    "username" : "kidys@noah",
     "email":"kidus@gmail.com",
     "password" : "123456",
     "confirmPassword" : "123456"
@@ -21,3 +20,6 @@ Content-Type: application/json
     "username" : "kidus@noah",
     "password" : "123456"
 }
+
+###
+GET http://localhost:3333/api/users/token HTTP/1.1
