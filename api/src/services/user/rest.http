@@ -1,13 +1,13 @@
 ###
 GET http://localhost:3333/api/users HTTP/1.1
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoia2lkdXNAbm9haCIsImVtYWlsIjoia2lkdXNAZ21haWwuY29tIiwiaWF0IjoxNjc3Mjk1MjAyLCJleHAiOjE2NzcyOTUyNjJ9.Kmphquf7J967cW5kir2bg8gAkCFXVpkYTOnBxOxQ-R0
 
 ###
 POST http://localhost:3333/api/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-    "username" : "kidys@noah",
+    "username" : "kidus@noah",
     "email":"kidus@gmail.com",
     "password" : "123456",
     "confirmPassword" : "123456"

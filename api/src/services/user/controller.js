@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken");
 
 const getUsers = async (req, res) => {
   try {
-    const users = await Users.findAll();
+    const users = await Users.findAll({
+      attributes: ["id", "username", "email"],
+    });
     res.status(200).json({
       success: true,
       payload: users,
@@ -70,7 +72,7 @@ const login = async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "20s",
+        expiresIn: "60s",
       }
     );
     const refreshToken = jwt.sign(
@@ -81,7 +83,7 @@ const login = async (req, res) => {
       },
       process.env.REFRESH_TOKEN_SECRET,
       {
-        expiresIn: "2d",
+        expiresIn: "1d",
       }
     );
 
@@ -94,15 +96,18 @@ const login = async (req, res) => {
       }
     );
 
-    res.cookie("refreshToken", refreshToken, {
+    res.cookie("accessToken", accessToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       // secure : true
     });
 
     res.json({
-      refreshToken: refreshToken,
+      accessToken: accessToken,
     });
+    // res.json({
+    //   refreshToken: refreshToken,
+    // });
   } catch (error) {
     res.status(404).json({
       success: false,

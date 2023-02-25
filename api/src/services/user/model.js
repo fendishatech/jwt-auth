@@ -6,6 +6,12 @@ const { DataTypes } = Sequelize;
 const Users = db.define(
   "users",
   {
+    // first_name: {
+    //   type: DataTypes.STRING,
+    // },
+    // last_name: {
+    //   type: DataTypes.STRING,
+    // },
     username: {
       type: DataTypes.STRING,
     },
