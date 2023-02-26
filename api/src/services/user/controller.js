@@ -72,7 +72,7 @@ const login = async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "60s",
+        expiresIn: "20s",
       }
     );
     const refreshToken = jwt.sign(
@@ -96,18 +96,15 @@ const login = async (req, res) => {
       }
     );
 
-    res.cookie("accessToken", accessToken, {
+    res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       // secure : true
     });
 
     res.json({
-      accessToken: accessToken,
+      accessToken,
     });
-    // res.json({
-    //   refreshToken: refreshToken,
-    // });
   } catch (error) {
     res.status(404).json({
       success: false,
@@ -118,16 +115,22 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
-  if (!refreshToken) return res.sendStatus(204);
+  if (!refreshToken)
+    return res.status(204).json({
+      message: "Unauthorized",
+    });
   const user = await Users.findAll({
     where: {
       refresh_token: refreshToken,
     },
   });
-  if (!user[0]) return res.sendStatus(204);
+  if (!user[0]) {
+    return res.status(204).json({
+      error: "there is no user",
+    });
+  }
 
   const userId = user[0].id;
-
   await Users.update(
     {
       refresh_token: null,
@@ -138,8 +141,10 @@ const logout = async (req, res) => {
       },
     }
   );
-  res.clearCookies("refreshToken");
-  return res.sendStatus(200);
+  res.clearCookie("refreshToken");
+  return res.status(200).json({
+    message: "User logged out",
+  });
 };
 
 module.exports = {

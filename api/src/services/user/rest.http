@@ -1,6 +1,6 @@
 ###
 GET http://localhost:3333/api/users HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoia2lkdXNAbm9haCIsImVtYWlsIjoia2lkdXNAZ21haWwuY29tIiwiaWF0IjoxNjc3MzM1Mjg1LCJleHAiOjE2NzczMzUzNDV9.Y9rCgJxyy35qIg89_lxqWGquaVzx88cHhHR8RrI921A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoia2lkdXNAbm9haCIsImVtYWlsIjoia2lkdXNAZ21haWwuY29tIiwiaWF0IjoxNjc3MzkwMTQ3LCJleHAiOjE2Nzc4MjIxNDd9.ninDEqyaQlfULlTO6_omR2dmoEahHuKLziL7QIOSSfI
 ###
 POST http://localhost:3333/api/users/register HTTP/1.1
 Content-Type: application/json
@@ -23,3 +23,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3333/api/users/token HTTP/1.1
+
+###
+DELETE http://localhost:3333/api/users/logout HTTP/1.1

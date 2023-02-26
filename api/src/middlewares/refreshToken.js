@@ -5,7 +5,8 @@ const refreshToken = async (req, res) => {
   try {
     // GET REFRESH TOKEN
     const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) return res.sendStatus(401);
+    if (!refreshToken)
+      return res.status(401).json({ message: "No refresh token in header" });
     // GET USER WITH THAT REFRESH TOKEN IN THE DATABASE
     const user = await Users.findAll({
       where: {
@@ -14,25 +15,33 @@ const refreshToken = async (req, res) => {
     });
     // IF THERE IS NO USER WITH THAT REFRESH TOKEN
     if (!user[0]) {
-      return res.sendStatus(403);
+      return res.status(403).json("Unauthorized User");
     }
+    const userId = user[0].id;
+    const username = user[0].username;
+    const email = user[0].email;
     // VERIFY
-    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-      if (err) return res.sendStatus(403);
+    try {
+      jwt.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET,
+        (err, user) => {
+          if (err) return res.sendStatus(403);
 
-      const userId = user[0].id;
-      const username = user[0].username;
-      const email = user[0].email;
-      const accessToken = jwt.sign(
-        { userId, username, email },
-        process.env.ACCESS_TOKEN_SECRET,
-        {
-          expiresIn: "15s",
+          const accessToken = jwt.sign(
+            { userId, username, email },
+            process.env.ACCESS_TOKEN_SECRET,
+            {
+              expiresIn: "5d",
+            }
+          );
+
+          res.json({ accessToken });
         }
       );
-
-      res.json({ accessToken });
-    });
+    } catch (error) {
+      console.log(error.message);
+    }
   } catch (error) {
     console.log(error.message);
   }

@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const db = require("./helper/database");
 const userRouter = require("./services/user/routes");
 // DEBUG
@@ -12,6 +13,12 @@ const app = express();
 // MIDDLE WARES
 app.use(cookieParser());
 app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3333",
+  })
+);
 dotenv.config();
 
 // migrateSchema();
