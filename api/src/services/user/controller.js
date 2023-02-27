@@ -104,6 +104,7 @@ const login = async (req, res) => {
 
     res.json({
       accessToken,
+      refreshToken,
     });
   } catch (error) {
     res.status(404).json({
